@@ -1,17 +1,17 @@
 import edu.princeton.cs.algs4.StdOut;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class DoublyLinkedList<Item> {
 
-    private Node beforeFirst;
-    private Node afterLast;
     static public int numberOfNodes;
+    private Node sentinel;
 
 
     public DoublyLinkedList(){
-        beforeFirst = new Node();
-        afterLast = new Node();
-        beforeFirst.next = afterLast;
-        afterLast.prev = beforeFirst;
+        sentinel = new Node();
+        sentinel.next = sentinel;
+        sentinel.prev = sentinel;
     }
 
     private class Node{
@@ -20,15 +20,30 @@ public class DoublyLinkedList<Item> {
         private Node prev;
     }
 
+    private boolean isEmpty(){
+        if(numberOfNodes == 0){
+            return true;
+        }
+        else return false;
+    }
+
+    private int size(){
+        return numberOfNodes;
+    }
+
     public void enqueue(Item item){
-        Node last = afterLast.prev;
         Node n = new Node();
         n.item = item;
-        n.next = beforeFirst;
-        n.prev = last;
-        afterLast.prev = n;
-        last.next = n;
         numberOfNodes++;
+        if(sentinel == null){
+            n.next = n.prev = n;
+            StdOut.println("\nElement: [" + item.toString()+ "] has been enqueued");
+            return;
+        }
+        n.next = sentinel.next;
+        n.prev = sentinel;
+        sentinel.next = n;
+        n.next.prev = n;
         StdOut.println("\nElement: [" + item.toString()+ "] has been enqueued");
         print();
     }
@@ -38,12 +53,10 @@ public class DoublyLinkedList<Item> {
             StdOut.println("No elements to dequeue");
         }
         else{
-            afterLast.prev.prev.next = beforeFirst;
-            beforeFirst.prev = afterLast.prev.prev;
-            Node n = afterLast.prev;
-            //StdOut.println(n.item.toString());
-            Item item = n.item;
             numberOfNodes--;
+            Item item = sentinel.prev.item;
+            sentinel.prev.prev.next = sentinel;
+            sentinel.prev = sentinel.prev.prev;
             StdOut.println("\nElement: [" + item.toString() + "] has been dequeued");
             print();
         }
@@ -54,7 +67,7 @@ public class DoublyLinkedList<Item> {
     }
 
     public String toString(){
-        return printedQueue(beforeFirst, new StringBuilder());
+        return printedQueue(sentinel.prev, new StringBuilder());
     }
 
     public String printedQueue(Node n, StringBuilder sb){
