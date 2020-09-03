@@ -45,7 +45,7 @@ public class DoublyLinkedList<Item> {
         sentinel.next = n;
         n.next.prev = n;
         StdOut.println("\nElement: [" + item.toString()+ "] has been enqueued");
-        print();
+        StdOut.println(queueToString());
     }
 
     public void dequeue(){
@@ -58,21 +58,31 @@ public class DoublyLinkedList<Item> {
             sentinel.prev.prev.next = sentinel;
             sentinel.prev = sentinel.prev.prev;
             StdOut.println("\nElement: [" + item.toString() + "] has been dequeued");
-            print();
         }
+        StdOut.println(queueToString());
     }
 
-    public void print(){
-        StdOut.println(toString());
-    }
 
-    public String toString(){
-        return printedQueue(sentinel.prev, new StringBuilder());
-    }
 
-    public String printedQueue(Node n, StringBuilder sb){
+    public String queueToString(){
+        Node n = sentinel.prev;
+        int i = 0;
+        if(isEmpty()){
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder();
+
+        while(i < numberOfNodes){
+            sb.append("[");
+            sb.append(n.item.toString());
+            sb.append("],");
+            n = n.prev;
+            i++;
+        }
+        sb.deleteCharAt(sb.length()-1);
         return sb.toString();
     }
+
 
 
 
