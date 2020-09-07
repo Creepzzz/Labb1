@@ -98,12 +98,21 @@ public class CharStack<T> {
      */
     public static void main (String[] args){
         CharStack<Character> testStack = new CharStack<Character>();
+        StdOut.println("\n---Testing empty stack---");
         StdOut.println("Expected size: 0 \nActual size: " + testStack.size());
-        testStack.push('1');
+        testStack.push('n');
+        StdOut.println("\n---Testing pushing and popping n---");
         StdOut.println("Expected size: 1 \nActual size: " + testStack.size());
         char testPop = testStack.pop();
         StdOut.println("Expected size: 0 \nActual size: " + testStack.size());
-        StdOut.println("Expected element: 1 \nActual element: " + testPop);
+        StdOut.println("Expected element: n \nActual element: " + testPop);
+        StdOut.println("\n---Testin pushing a, b, c and popping c---");
+        testStack.push('a');
+        testStack.push('b');
+        testStack.push('c');
+        testPop = testStack.pop();
+        StdOut.println("Expected size: 2 \nActual size: " + testStack.size());
+        StdOut.println("Expected element: c \nActual element: " + testPop);
 
     }
 }
