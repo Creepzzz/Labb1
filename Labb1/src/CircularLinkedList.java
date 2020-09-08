@@ -9,7 +9,7 @@
    How to use: The class does not take input from standard input.
                In the main method there are hard coded tests, testing all
                features of the class, dequeue, enqueue, hasNext, next a well
-               as counting the number of existing nodes. 
+               as counting the number of existing nodes.
  */
 
 import edu.princeton.cs.algs4.StdOut;
@@ -65,7 +65,6 @@ public class CircularLinkedList<Item> implements Iterable<Item> {
     private class CircularLinkedListIterator implements Iterator<Item>{
 
         Node current, tail;
-
         /**
          * Constructor of Circular list iterator
          * @param head is the first node
