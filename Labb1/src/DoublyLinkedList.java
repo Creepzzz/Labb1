@@ -1,3 +1,16 @@
+/* Author: Matilda Qvick 001105-0606
+   Generated: 27/8 - 2020
+   Last updated: 8/9 - 2020
+   Solves: Creates a FIFO queue where elements can be enqueued
+           and dequeued in FIFO order. The queue is generic and
+           double linked circular, meaning iteration to next and
+           previous is possible and the next node from the last
+           points to the first node. After each dequeue and enqueue
+           the queue is printed out.
+   How to use: Tests are hard coded into main, testing both enqueue
+               and dequeue. There is no input from standard input.
+ */
+
 import edu.princeton.cs.algs4.StdOut;
 
 public class DoublyLinkedList<Item>
@@ -31,11 +44,11 @@ public class DoublyLinkedList<Item>
         return numberOfNodes == 0;
     }
 
-     /**
-      * Puts item at the end of a queue and makes sentinel node next point to it,
-      * previous node points to sentinel and n is declared as last element of the queue
-      * @param item to be enqueued
-      */
+    /**
+     * Puts item at the end of a queue and makes sentinel node next point to it,
+     * previous node points to sentinel and n is declared as last element of the queue
+     * @param item to be enqueued
+     */
     public void enqueue(Item item){
         Node n = new Node();
         n.item = item;
@@ -56,7 +69,7 @@ public class DoublyLinkedList<Item>
       */
     public void dequeue(){
         if(numberOfNodes<=0){
-            StdOut.println("\n!!! No elements to dequeue !!!");
+            StdOut.println("\nNO ELEMENTS TO DEQUEUE");
         }
         else{
             numberOfNodes--;
@@ -129,6 +142,5 @@ public class DoublyLinkedList<Item>
         StdOut.println("Expected dequeued element: b \nActual dequeued element is stated in ' ' above");
         doubly.dequeue();
         StdOut.println("Expected number of nodes: 0 \nActual number of nodes: " + numberOfNodes);
-
     }
 }

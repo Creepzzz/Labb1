@@ -1,3 +1,17 @@
+/* Author: Matilda Qvick 001105-0606
+   Generated: 26/8 - 2020
+   Last updated: 8/9 - 2020
+   Solves: Implementation of a stack with push and pop
+           functions. The stack is generic and hard
+           coded tests are found in main to test the
+           different features. There is also a  method
+           that returns a string representation of the
+           stack.
+   How to use: Class is implemented in the recursion and
+               interactive class. The tests can be run by
+               running the main function.
+ */
+
 import edu.princeton.cs.algs4.StdOut;
 
 public class CharStack<T> {
